@@ -1,0 +1,36 @@
+﻿@namespace TaskBugTracker
+@model Models.Task
+
+@{ 
+    ViewData["Title"] = Model.Title;
+    ViewData["Description"] = Model.Description;
+    ViewData["Keywords"] = "project tracker task bug progress programming code";
+}
+
+<div class="container">
+    @if (!String.IsNullOrEmpty(Model.Image))
+    {
+        var image_path = $"/Image/{Model.Image}";
+        string status_path = $"{Model.Status}.png";
+
+        <div>
+            <img class="project-img no-shadow" src="@image_path" height="200" />
+            <img src="~/content/static/status/@status_path" style="width: 10px;" /> @Model.Status
+
+        </div>
+    }
+    @Model.Title
+    <div class="project-body">
+        @Html.Raw(Model.Description)
+        <hr>
+
+        <div class="container">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Panel" asp-action="EditTask" asp-route-projectId="@Model.ProjectId" asp-route-id="@Model.TaskId">Edit Task</a>
+            }
+            <hr>
+
+            </div>
+    </div>
+</div>

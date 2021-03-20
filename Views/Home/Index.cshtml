@@ -1,0 +1,65 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@model IEnumerable<Project>
+
+@{
+    ViewData["Title"] = "Home Page - Project Tracker";
+    ViewData["Description"] = "Maintain the progress of your projects";
+    ViewData["Keywords"] = "project tracker task bug progress programming code";
+}
+
+@using (Html.BeginForm())
+{
+    <p title="Search" style="padding-top: 20px; text-align: center;">
+        @Html.TextBox("SearchString")
+        <input class="fa-star" type="submit" value="Search" />
+    </p>
+}
+<table>
+    <tr>
+        <th>Sort By:</th>
+        <th>
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleSortParm }) |
+        </th>
+        <th>
+            @Html.ActionLink("Last Modified", "Index", new { sortOrder = ViewBag.DateSortParm }) |
+        </th>
+        <th>
+            @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm })
+        </th>
+    </tr>
+</table>
+
+<div class="cards-container">
+    <div class="row" style="width: 100%;">
+        @foreach (var project in Model)
+        {
+            var image_path = $"/Image/{project.Image}";
+            var status_path = $"{project.Status}.png";
+            <section class="col-lg-5 col-md-6 py-4">
+                <div class="card small">
+                    <a asp-controller="Home" asp-action="Project" asp-route-id="@project.ProjectId">
+                        <img src="@image_path" class="card-img-top" />
+                    </a>
+
+                    <div class="card-body">
+                        <h4 class="card-title" style="height: 30px; overflow-y: hidden">
+                            <a asp-controller="Home" asp-action="Project" asp-route-id="@project.ProjectId">@project.Title</a>
+                        </h4>
+                        <div class="card-subtitle text-muted" style="height: 20px; overflow-y: hidden">
+                            <h6>@project.Description</h6>
+                        </div>
+
+                        <small class="text-muted">Last Modified: @project.LastModified</small>
+
+                        <p class="card-text text-muted">
+                            <img src="~/content/static/status/@status_path" style="width: 10px;" /> @project.Status
+                            
+
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        }
+    </div>
+</div>

@@ -1,0 +1,56 @@
+﻿@model ProjectViewModel
+
+@{
+
+}
+<h2>Edit Project</h2>
+<div>
+    <form asp-controller="Panel" asp-action="EditProject" method="post" enctype="multipart/form-data">
+        <input asp-for="ProjectId" type="hidden" />
+        <div>
+            <label>Title:</label>
+            <input asp-for="Title" />
+            <select asp-for="Status">
+                <option value="Unclaimed">Unclaimed</option>
+                <option value="Claimed">Claimed</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Incomplete">Incomplete</option>
+                <option value="Completed">Complete</option>
+            </select>
+        </div>
+        <div>
+            <label>Banner Image:</label>
+            <input class="btn-outline-primary" asp-for="CurrentImage" type="hidden" />
+            <input asp-for="Image" />
+        </div>
+        <div>
+            <label>Brief Description:</label>
+            <input asp-for="Description" />
+        </div>
+        <hr />
+        <div class="container">
+            <h5>Tasks</h5>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.ActionLink("Title", "EditProject", new { sortOrder = ViewBag.TitleSortParm })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Date Modified", "EditProject", new { sortOrder = ViewBag.DateSortParm })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Status", "EditProject", new { sortOrder = ViewBag.StatusSortParm })
+                    </th>
+                </tr>
+
+            </table>
+        </div>
+
+        <input class="btn-outline-primary fa-star" style="border-radius: 0.25rem; padding: 0.5rem 1rem;" type="submit" value="Save Changes" />
+
+    </form>
+</div>
+
+@section scripts {
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+}

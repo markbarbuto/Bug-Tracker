@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale-1.0" />
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.Description" />
+    <meta name="keywords" content="@ViewBag.Keywords" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body class="body">
+    <div class="header">
+        <nav class="flex flex-jc-sb flex-ai-c">
+            @* Change to logo
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                <img src="~/content/static/logo.svg" alt="Project Tracker">
+            </a>*@
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">Project Tracker</a>
+
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Panel" asp-action="Index">Admin Panel</a>
+                <a asp-controller="Panel" asp-action="EditProject">New Project</a>
+                <a asp-controller="Auth" asp-action="Logout" class="button-logout btn-outline-primary" style="text-decoration:none;">Sign Out</a>
+            }
+            else
+            {
+                <a asp-controller="Auth" asp-action="Login" class="button-login btn-outline-primary" style="text-decoration:none;">Sign In</a>
+            }
+
+            @*<a class="hamburger-menu">☰</a>*@
+
+        </nav>
+    </div>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @*<div class="footer border-top text-muted">
+        <div class="container">
+            &copy; 2021 - Mark Barbuto - <a asp-area="" asp-page="/Privacy">Privacy</a> - <a href="mailto:markbarbuto@outlook.com">markbarbuto@outlook.com</a> - Icons made by Freepik from <a href="https://www.flaticon.com">www.flaticon.com</a>
+        </div>
+    </div>*@
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("scripts", false)
+</body>
+</html>

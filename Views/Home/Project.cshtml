@@ -1,0 +1,134 @@
+﻿@model Project
+
+@{ 
+    ViewData["Title"] = Model.Title;
+    ViewData["Description"] = Model.Description;
+    ViewData["Keywords"] = "project tracker task bug progress programming code";
+}
+
+<div class="container">
+    @if (!String.IsNullOrEmpty(Model.Image))
+    {
+        var image_path = $"/Image/{Model.Image}";
+        string status_path = $"{Model.Status}.png";
+
+        <div>
+            <img class="project-img no-shadow" src="@image_path" height="200" />
+            <img src="~/content/static/status/@status_path" style="width: 10px;" /> @Model.Status
+
+        </div>
+    }
+    @Model.Title
+    <div class="project-body">
+        @Html.Raw(Model.Description)
+        <hr>
+
+        <div class="container">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Panel" asp-action="EditTask" asp-route-projectId="@Model.ProjectId">New Task</a>
+            }
+            <h5>Tasks</h5>
+            @if (Model.Tasks != null)
+            {
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.ActionLink("Title", "Project", new { taskSortOrder = ViewBag.TitleSortParm})
+                        </th>
+                        <th>
+                            @Html.ActionLink("Last Modified", "Project", new { taskSortOrder = ViewBag.DateSortParm})
+                        </th>
+                        <th>
+                            @Html.ActionLink("Priority", "Project", new { taskSortOrder = ViewBag.PrioritySortParm})
+                        </th>
+                        <th>
+                            @Html.ActionLink("Status", "Project", new { taskSortOrder = ViewBag.StatusSortParm})
+                        </th>
+                    </tr>
+                    @foreach (var task in Model.Tasks)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-controller="Home" asp-action="Task" asp-route-id="@task.TaskId">@task.Title</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => task.LastModified)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => task.Priority)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => task.Status)
+                            </td>
+                            <th>
+                                <a asp-controller="Panel" asp-action="EditTask" asp-route-projectId="@Model.ProjectId" asp-route-id="@task.TaskId">Edit</a>
+                                |
+                                <a asp-controller="Panel" asp-action="RemoveTask" asp-route-projectId="@Model.ProjectId" asp-route-id="@task.TaskId">Remove</a>
+                            </th>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <div>No Tasks</div>
+            }
+            <hr>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Panel" asp-action="EditBug" asp-route-projectId="@Model.ProjectId">New Bug</a>
+            }
+            <h5>Bugs</h5>
+            @if (Model.Bugs != null)
+            {
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.ActionLink("Title", "Project", new { @*sortOrder = ViewBag.TitleSortParm*@})
+                        </th>
+                        <th>
+                            @Html.ActionLink("Last Modified", "Project", new { @*sortOrder = ViewBag.DateSortParm*@})
+                        </th>
+                        <th>
+                            @Html.ActionLink("Priority", "Project", new { @*sortOrder = ViewBag.DateSortParm*@})
+                        </th>
+                        <th>
+                            @Html.ActionLink("Status", "Project", new { @*sortOrder = ViewBag.StatusSortParm*@})
+                        </th>
+                    </tr>
+
+                    @foreach (var bug in Model.Bugs)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-controller="Home" asp-action="Bug" asp-route-projectId="@Model.ProjectId" asp-route-id="@bug.BugId">@bug.Title</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => bug.LastModified)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => bug.Priority)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => bug.Status)
+                            </td>
+                            <th>
+                                <a asp-controller="Panel" asp-action="EditBug" asp-route-projectId="@Model.ProjectId" asp-route-id="@bug.BugId">Edit</a>
+                                |
+                                <a asp-controller="Panel" asp-action="RemoveBug" asp-route-projectId="@Model.ProjectId" asp-route-id="@bug.BugId">Remove</a>
+                            </th>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <div>No Bugs</div>
+            }
+            <hr>
+
+            </div>
+    </div>
+</div>

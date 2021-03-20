@@ -1,0 +1,47 @@
+﻿@model TaskBugViewModel
+
+@{
+
+}
+<h2>Edit Bug</h2>
+<div>
+    <form asp-controller="Panel" asp-action="EditBug" method="post" enctype="multipart/form-data">
+        <input asp-for="Id" type="hidden" />
+        <input asp-for="ProjectId" type="hidden" />
+        <div>
+            <label>Title:</label>
+            <input asp-for="Title" />
+            <select asp-for="Status">
+                <option value="Unclaimed">Unclaimed</option>
+                <option value="Claimed">Claimed</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Incomplete">Incomplete</option>
+                <option value="Completed">Complete</option>
+            </select>
+            <select asp-for="Priority">
+                <option value="Urgent">Urgent</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+        </div>
+        <div>
+            <label>Task Image:</label>
+            <input class="btn-outline-primary" asp-for="CurrentImage" type="hidden" />
+            <input asp-for="Image" />
+        </div>
+        <div>
+            <label>Brief Description:</label>
+            <input asp-for="Description" />
+        </div>
+        <hr />
+
+
+        <input class="btn-outline-primary fa-star" style="border-radius: 0.25rem; padding: 0.5rem 1rem;" type="submit" value="Save Changes" />
+
+    </form>
+</div>
+
+@section scripts {
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+}

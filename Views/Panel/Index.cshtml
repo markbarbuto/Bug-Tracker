@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@model IEnumerable<Project>
+
+@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Last Modified", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var project in Model)
+    {
+        <tr>
+            <td>
+                <a asp-controller="Home" asp-action="Project" asp-route-id="@project.ProjectId">@project.Title</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => project.LastModified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => project.Status)
+            </td>
+            <th>
+                <a asp-controller="Panel" asp-action="EditProject" asp-route-id="@project.ProjectId">Edit</a>
+                |
+                <a asp-controller="Panel" asp-action="RemoveProject" asp-route-id="@project.ProjectId">Remove</a>
+            </th>
+        </tr>
+    }
+</table>
