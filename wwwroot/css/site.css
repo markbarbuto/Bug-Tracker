@@ -1,0 +1,191 @@
+﻿.checked {
+    color: orange;
+}
+
+.fa-star {
+    cursor: pointer;
+}
+
+html {
+    font-size: 100%;
+    position: relative;
+    min-height: 100%;
+}
+
+.body {
+    background-color: #f0f0f0
+}
+
+.header-logo {
+
+}
+
+.header {
+    background-color: #e8e8e8;
+}
+
+/*Mobile Menu*/
+.hamburger-menu {
+    display: flex;
+    text-align: center;
+}
+
+p {
+    font-family: 'Nunito', sans-serif;
+}
+
+h1 {
+    font-family: 'Nunito', sans-serif;
+}
+
+ul {
+    font-family: 'Nunito', sans-serif;
+}
+
+a {
+    font-family: 'Nunito', sans-serif;
+    color: #0366d6;
+    text-decoration: none;
+}
+
+.button-login, .button-logout {
+    padding: 0.5rem 1rem;
+    padding-bottom: 0.4rem;
+    border: 2px solid #10b8df;
+    border-radius: 0.25rem;
+    text-decoration: none;
+}
+
+a, a:visited, a:hover {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    font-family: 'Nunito', sans-serif;
+    font-size: xx-large;
+    text-align: center;
+    word-break: break-all;
+}
+
+nav {
+    padding: 15px;
+}
+
+nav a {
+    display: inline-block;
+    height: 100%;
+    padding: 15px;
+    text-decoration: none;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.cards-container {
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.cards-container .card:hover {
+    transform: scale(1.025);
+    box-shadow: 0 10px 20px rgba(37,33,82,.12), 0 4px 8px rgba(37,33,82,.06);
+}
+
+.card {
+    border: 1px solid;
+    border-radius: .25rem;
+    width: 250px;
+}
+
+.card-img-top {
+    height: 15vw;
+    object-fit: cover;
+    background-repeat: no-repeat;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.card-title {
+    overflow-y: hidden;
+    margin-bottom: .75rem;
+    height: 10px;
+}
+
+.card-subtitle {
+    height: 20px;
+    overflow-y: hidden;
+    margin-bottom: 0;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+.card-text:last-child {
+    overflow-y: hidden;
+    margin-bottom:0;
+}
+
+.card-text.a {
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.footer {
+    position: sticky;
+    bottom: 0;
+    padding-top: 3px;
+    padding-bottom: 5px;
+    font-family: 'Nunito', sans-serif;
+    background-color: #e8e8e8;
+    height: 30px;
+    text-align: center;
+}
+
+.project {
+    border: 0;
+    padding: 5px 5px;
+}
+
+.project-header {
+    width: 100%;
+}
+
+.no-shadow {
+    box-shadow: none;
+}
+
